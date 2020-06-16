@@ -1,0 +1,62 @@
+{
+  "id": "0316167b-bf95-4fea-a0c2-c0b998c2e1c4",
+  "brand": "Lenovo",
+  "name": "Thinkpad X1",
+  "cpu": {
+    "brand": "Intel",
+    "name": "Core i9-9980HK",
+    "numberCores": 8,
+    "numberThreads": 9,
+    "minGhz": 2.9321585256129934,
+    "maxGhz": 3.9503667383096115
+  },
+  "ram": {
+    "value": "37",
+    "unit": 5
+  },
+  "gpus": [
+    {
+      "brand": "Nvidia",
+      "name": "RTX 2060",
+      "minGhz": 1.3208296285949257,
+      "maxGhz": 1.6614782297095203,
+      "memory": {
+        "value": "6",
+        "unit": 5
+      }
+    }
+  ],
+  "storages": [
+    {
+      "driver": 2,
+      "memory": {
+        "value": "1018",
+        "unit": 5
+      }
+    },
+    {
+      "driver": 1,
+      "memory": {
+        "value": "6",
+        "unit": 6
+      }
+    }
+  ],
+  "screen": {
+    "sizeInch": 14.1071205,
+    "resolution": {
+      "width": 4746,
+      "height": 2670
+    },
+    "panel": 1,
+    "multitouch": false
+  },
+  "keyboard": {
+    "layout": 1,
+    "backlit": false
+  },
+  "weightKg": 2.2615472510409598,
+  "priceUsd": 3481.5980186817237,
+  "releaseYear": 2017,
+  "updatedAt": "2020-06-16T04:17:26.755166071Z"
+}
