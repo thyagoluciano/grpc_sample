@@ -3,7 +3,7 @@ syntax = "proto3";
 package techschool.pcbook.go;
 
 option go_package = "pb";
-option java_package = "com.gitlab.techschool.pcbookjava.pb";
+option java_package = "github.com.techscrool.pcbook.java.pb";
 option java_multiple_files = true;
 
 message Keyboard {

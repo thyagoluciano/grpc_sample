@@ -3,7 +3,7 @@ syntax = "proto3";
 package techschool.pcbook.go;
 
 option go_package = "pb";
-option java_package = "com.gitlab.techschool.pcbookjava.pb";
+option java_package = "github.com.techscrool.pcbook.java.pb";
 option java_multiple_files = true;
 
 import "processor_message.proto";
@@ -29,5 +29,5 @@ message Laptop {
   }
   double price_usd = 12;
   uint32 release_year = 13;
-  google.protobuf.Timestamp update_at = 14;
+  google.protobuf.Timestamp updated_at = 14;
 }
