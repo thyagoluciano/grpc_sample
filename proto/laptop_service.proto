@@ -7,11 +7,17 @@ option java_package = "github.com.techscrool.pcbook.java.pb";
 option java_multiple_files = true;
 
 import "laptop_message.proto";
+import "filter_message.proto";
 
 message CreateLaptopRequest { Laptop laptop = 1; }
 
 message CreateLapTopResponse { string id = 1; }
 
+message SearchLaptopRequest { Filter filter = 1; }
+message SearchLaptopResponse { Laptop laptop = 1; }
+
 service LapTopService {
   rpc CreateLaptop(CreateLaptopRequest) returns (CreateLapTopResponse) {};
+  rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse) {
+  };
 }
