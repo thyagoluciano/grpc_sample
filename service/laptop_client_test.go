@@ -11,10 +11,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/techschool/pcbook/go/pb"
-	"github.com/techschool/pcbook/go/sample"
-	"github.com/techschool/pcbook/go/serializer"
-	"github.com/techschool/pcbook/go/service"
+	"gitlab.com/techschool/pcbook/pb"
+	"gitlab.com/techschool/pcbook/sample"
+	"gitlab.com/techschool/pcbook/serializer"
+	"gitlab.com/techschool/pcbook/service"
 	"google.golang.org/grpc"
 )
 

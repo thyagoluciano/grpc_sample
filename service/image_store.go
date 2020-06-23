@@ -12,37 +12,37 @@ import (
 // ImageStore is an interface to store laptop images
 type ImageStore interface {
 	// Save saves a new laptop image to the store
-	Save(laptoID string, imageType string, imageData bytes.Buffer) (string, error)
+	Save(laptopID string, imageType string, imageData bytes.Buffer) (string, error)
 }
 
-// DiskImageStore stores images on disk and its info on memory
+// DiskImageStore stores image on disk, and its info on memory
 type DiskImageStore struct {
-	mutex sync.RWMutex
+	mutex       sync.RWMutex
 	imageFolder string
-	images map[string]*ImageInfo
+	images      map[string]*ImageInfo
 }
 
 // ImageInfo contains information of the laptop image
 type ImageInfo struct {
-	laptopID string
-	Type string
-	Path string
+	LaptopID string
+	Type     string
+	Path     string
 }
 
 // NewDiskImageStore returns a new DiskImageStore
 func NewDiskImageStore(imageFolder string) *DiskImageStore {
 	return &DiskImageStore{
 		imageFolder: imageFolder,
-		images: make(map[string]*ImageInfo),
+		images:      make(map[string]*ImageInfo),
 	}
 }
 
-// Save saves a new laptop image to the store
+// Save adds a new image to a laptop
 func (store *DiskImageStore) Save(
 	laptopID string,
-	imageType string, 
+	imageType string,
 	imageData bytes.Buffer,
-)(string, error) {
+) (string, error) {
 	imageID, err := uuid.NewRandom()
 	if err != nil {
 		return "", fmt.Errorf("cannot generate image id: %w", err)
@@ -64,9 +64,9 @@ func (store *DiskImageStore) Save(
 	defer store.mutex.Unlock()
 
 	store.images[imageID.String()] = &ImageInfo{
-		laptopID: laptopID,
-		Type: imageType,
-		Path: imagePath,
+		LaptopID: laptopID,
+		Type:     imageType,
+		Path:     imagePath,
 	}
 
 	return imageID.String(), nil

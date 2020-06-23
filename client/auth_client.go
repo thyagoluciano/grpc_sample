@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/techschool/pcbook/go/pb"
+	"gitlab.com/techschool/pcbook/pb"
 	"google.golang.org/grpc"
 )
 
@@ -16,7 +16,7 @@ type AuthClient struct {
 }
 
 // NewAuthClient returns a new auth client
-func NewAuthClient(cc *grpc.ClientConn, username, password string) *AuthClient {
+func NewAuthClient(cc *grpc.ClientConn, username string, password string) *AuthClient {
 	service := pb.NewAuthServiceClient(cc)
 	return &AuthClient{service, username, password}
 }
@@ -33,7 +33,7 @@ func (client *AuthClient) Login() (string, error) {
 
 	res, err := client.service.Login(ctx, req)
 	if err != nil {
-		return "", nil
+		return "", err
 	}
 
 	return res.GetAccessToken(), nil

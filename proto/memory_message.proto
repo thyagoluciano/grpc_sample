@@ -2,10 +2,9 @@ syntax = "proto3";
 
 package techschool.pcbook.go;
 
-option go_package = "pb";
+option go_package = ".;pb";
 option java_package = "github.com.techscrool.pcbook.java.pb";
 option java_multiple_files = true;
-
 message Memory {
   enum Unit {
     UNKNOWN = 0;

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/techschool/pcbook/go/pb"
+	"gitlab.com/techschool/pcbook/pb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

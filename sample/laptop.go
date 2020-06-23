@@ -2,7 +2,7 @@ package sample
 
 import (
 	"github.com/golang/protobuf/ptypes"
-	"github.com/techschool/pcbook/go/pb"
+	"gitlab.com/techschool/pcbook/pb"
 )
 
 // NewKeyboard returns a new sample keyboard
@@ -45,18 +45,17 @@ func NewGPU() *pb.GPU {
 
 	minGhz := randomFloat64(1.0, 1.5)
 	maxGhz := randomFloat64(minGhz, 2.0)
-
-	memory := &pb.Memory{
-		Value: uint64(randomInt(2, 6)),
-		Unit:  pb.Memory_GIGABYTE,
-	}
+	memGB := randomInt(2, 6)
 
 	gpu := &pb.GPU{
 		Brand:  brand,
 		Name:   name,
 		MinGhz: minGhz,
 		MaxGhz: maxGhz,
-		Memory: memory,
+		Memory: &pb.Memory{
+			Value: uint64(memGB),
+			Unit:  pb.Memory_GIGABYTE,
+		},
 	}
 
 	return gpu
@@ -64,8 +63,10 @@ func NewGPU() *pb.GPU {
 
 // NewRAM returns a new sample RAM
 func NewRAM() *pb.Memory {
+	memGB := randomInt(4, 64)
+
 	ram := &pb.Memory{
-		Value: uint64(randomInt(4, 64)),
+		Value: uint64(memGB),
 		Unit:  pb.Memory_GIGABYTE,
 	}
 
@@ -74,10 +75,12 @@ func NewRAM() *pb.Memory {
 
 // NewSSD returns a new sample SSD
 func NewSSD() *pb.Storage {
+	memGB := randomInt(128, 1024)
+
 	ssd := &pb.Storage{
 		Driver: pb.Storage_SSD,
 		Memory: &pb.Memory{
-			Value: uint64(randomInt(128, 1024)),
+			Value: uint64(memGB),
 			Unit:  pb.Memory_GIGABYTE,
 		},
 	}

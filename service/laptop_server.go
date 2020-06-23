@@ -8,7 +8,7 @@ import (
 	"log"
 
 	"github.com/google/uuid"
-	"github.com/techschool/pcbook/go/pb"
+	"gitlab.com/techschool/pcbook/pb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -229,6 +229,7 @@ func (server *LaptopServer) RateLaptop(stream pb.LaptopService_RateLaptopServer)
 			return logError(status.Errorf(codes.Unknown, "cannot send stream response: %v", err))
 		}
 	}
+
 	return nil
 }
 

@@ -2,25 +2,27 @@ syntax = "proto3";
 
 package techschool.pcbook.go;
 
-option go_package = "pb";
-option java_package = "github.com.techscrool.pcbook.java.pb";
-option java_multiple_files = true;
-
+import "google/api/annotations.proto";
 import "laptop_message.proto";
 import "filter_message.proto";
+
+option go_package = ".;pb";
+option java_package = "github.com.techscrool.pcbook.java.pb";
+option java_multiple_files = true;
 
 message CreateLaptopRequest { Laptop laptop = 1; }
 
 message CreateLaptopResponse { string id = 1; }
 
 message SearchLaptopRequest { Filter filter = 1; }
+
 message SearchLaptopResponse { Laptop laptop = 1; }
 
 message UploadImageRequest {
   oneof data {
     ImageInfo info = 1;
     bytes chunk_data = 2;
-  }
+  };
 }
 
 message ImageInfo {
@@ -45,10 +47,27 @@ message RateLaptopResponse {
 }
 
 service LaptopService {
-  rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse) {};
-  rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse) {
+  rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse) {
+    option (google.api.http) = {
+      post : "/v1/laptop/create"
+      body : "*"
+    };
   };
-  rpc UploadImage(stream UploadImageRequest) returns (UploadImageResponse) {};
+  rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse) {
+    option (google.api.http) = {
+      get : "/v1/laptop/search"
+    };
+  };
+  rpc UploadImage(stream UploadImageRequest) returns (UploadImageResponse) {
+    option (google.api.http) = {
+      post : "/v1/laptop/upload_image"
+      body : "*"
+    };
+  };
   rpc RateLaptop(stream RateLaptopRequest) returns (stream RateLaptopResponse) {
+    option (google.api.http) = {
+      post : "/v1/laptop/rate"
+      body : "*"
+    };
   };
 }

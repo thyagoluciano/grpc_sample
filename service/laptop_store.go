@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	"github.com/jinzhu/copier"
-	"github.com/techschool/pcbook/go/pb"
+	"gitlab.com/techschool/pcbook/pb"
 )
 
 // ErrAlreadyExists is returned when a record with the same ID already exists in the store
@@ -20,7 +20,7 @@ type LaptopStore interface {
 	Save(laptop *pb.Laptop) error
 	// Find finds a laptop by ID
 	Find(id string) (*pb.Laptop, error)
-	// Search searches for laptops with filter, return one by one via the found function
+	// Search searches for laptops with filter, returns one by one via the found function
 	Search(ctx context.Context, filter *pb.Filter, found func(laptop *pb.Laptop) error) error
 }
 
@@ -68,7 +68,7 @@ func (store *InMemoryLaptopStore) Find(id string) (*pb.Laptop, error) {
 	return deepCopy(laptop)
 }
 
-// Search searches for laptops with filter, return one by one via the found function
+// Search searches for laptops with filter, returns one by one via the found function
 func (store *InMemoryLaptopStore) Search(
 	ctx context.Context,
 	filter *pb.Filter,
@@ -78,14 +78,13 @@ func (store *InMemoryLaptopStore) Search(
 	defer store.mutex.RUnlock()
 
 	for _, laptop := range store.data {
-		// heavy processing
-		// time.Sleep(time.Second)
-		log.Print("checking laptop id: ", laptop.GetId())
-
 		if ctx.Err() == context.Canceled || ctx.Err() == context.DeadlineExceeded {
 			log.Print("context is cancelled")
-			return errors.New("context is cancelled")
+			return nil
 		}
+
+		// time.Sleep(time.Second)
+		// log.Print("checking laptop id: ", laptop.GetId())
 
 		if isQualified(filter, laptop) {
 			other, err := deepCopy(laptop)
